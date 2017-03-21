@@ -14,7 +14,7 @@ Scanner::~Scanner() {
     fin.close();
 }
 
-void Scanner::Previous() {
+void Scanner::PrevToken() {
     UnGetChar((int)token.GetStr().size());
 }
 

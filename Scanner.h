@@ -11,7 +11,7 @@ public:
     void PrintToken();
     bool IsEndOfFile();
     const Token &GetToken() const;
-    void Previous();
+    void PrevToken();
 private:
     std::ifstream fin;
     Token token;
