@@ -1,0 +1,96 @@
+#include <string>
+#include <map>
+#include <vector>
+
+enum State {
+    AMPERSAND, ASTERISK, ASTERISK_EQUAL, ASTERISK_RIGHT_PARENTHESIS, AT, BIN_INTEGER_VALUE,
+    COLON, COLON_EQUAL, COMMA, DOLLAR, DOUBLE_VALUE, DOUBLE_VALUE_DIGIT, DOUBLE_VALUE_DIGIT_SCALE,
+    DOUBLE_VALUE_DIGIT_SCALE_SIGN, DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT, EQUAL, ERROR_INVALID_COMMENT,
+    ERROR_INVALID_EXPRESSION, ERROR_INVALID_STRING, EXCLAMATION_POINT, GREATER_THAN, GREATER_THAN_EQUAL,
+    GREATER_THAN_GREATER_THAN, GREATER_THAN_LESS_THAN, HASH, HEX_INTEGER_VALUE, IDENTIFIER, INTEGER_VALUE,
+    INTEGER_VALUE_PERIOD_PERIOD, LEFT_BRACE, LEFT_BRACKET, LEFT_PARENTHESIS, LEFT_PARENTHESIS_ASTERISK,
+    LEFT_PARENTHESIS_ASTERISK_ASTERISK, LESS_THAN, LESS_THAN_EQUAL, LESS_THAN_GREATER_THAN, LESS_THAN_LESS_THAN,
+    MINUS, MINUS_EQUAL, NOT_TOKEN, OCTAL_INTEGER_VALUE, PERCENT, PERIOD, PERIOD_PERIOD, PLUS, PLUS_EQUAL,
+    POINTER, QUOTE, RIGHT_BRACE, RIGHT_BRACKET, RIGHT_PARENTHESIS, SEMI_COLON, SLASH, SLASH_EQUAL, SLASH_SLASH,
+    SPACE, STRING, STRING_HASH, STRING_HASH_INTEGER_VALUE, VERTICAL_LINE
+};
+
+enum TokenType {
+    TK_DOUBLE, TK_IDENTIFIER, TK_INTEGER, TK_OPERATOR, TK_SEPARATOR, TK_STRING
+};
+
+static std::map<TokenType, std::string> tokenName = {
+        {TK_IDENTIFIER, "identifier"},
+        {TK_INTEGER, "integer"},
+        {TK_DOUBLE, "double"},
+        {TK_STRING, "string"},
+        {TK_OPERATOR, "operator"},
+        {TK_SEPARATOR, "separator"}
+};
+
+static std::map<State, TokenType> tokenType = {
+        {ASTERISK, TK_OPERATOR},
+        {ASTERISK_EQUAL, TK_OPERATOR},
+        {AT, TK_OPERATOR},
+        {BIN_INTEGER_VALUE, TK_INTEGER},
+        {COLON, TK_SEPARATOR},
+        {COLON_EQUAL, TK_OPERATOR},
+        {COMMA, TK_SEPARATOR},
+        {DOUBLE_VALUE, TK_DOUBLE},
+        {DOUBLE_VALUE_DIGIT, TK_DOUBLE},
+        {DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT, TK_DOUBLE},
+        {EQUAL, TK_OPERATOR},
+        {GREATER_THAN, TK_OPERATOR},
+        {GREATER_THAN_EQUAL, TK_OPERATOR},
+        {GREATER_THAN_GREATER_THAN, TK_OPERATOR},
+        {GREATER_THAN_LESS_THAN, TK_OPERATOR},
+        {HEX_INTEGER_VALUE, TK_INTEGER},
+        {IDENTIFIER, TK_IDENTIFIER},
+        {INTEGER_VALUE, TK_INTEGER},
+        {LEFT_BRACKET, TK_SEPARATOR},
+        {LEFT_PARENTHESIS, TK_SEPARATOR},
+        {LESS_THAN, TK_OPERATOR},
+        {LESS_THAN_EQUAL, TK_OPERATOR},
+        {LESS_THAN_GREATER_THAN, TK_OPERATOR},
+        {LESS_THAN_LESS_THAN, TK_OPERATOR},
+        {MINUS, TK_OPERATOR},
+        {MINUS_EQUAL, TK_OPERATOR},
+        {OCTAL_INTEGER_VALUE, TK_INTEGER},
+        {PERIOD, TK_SEPARATOR},
+        {PERIOD_PERIOD, TK_OPERATOR},
+        {PLUS, TK_OPERATOR},
+        {PLUS_EQUAL, TK_OPERATOR},
+        {POINTER, TK_OPERATOR},
+        {RIGHT_BRACKET, TK_SEPARATOR},
+        {RIGHT_PARENTHESIS, TK_SEPARATOR},
+        {SEMI_COLON, TK_SEPARATOR},
+        {SLASH_EQUAL, TK_OPERATOR},
+        {SPACE, TK_SEPARATOR},
+        {STRING, TK_STRING},
+        {VERTICAL_LINE, TK_OPERATOR}
+};
+
+class Token {
+public:
+    int GetLine() const;
+    void SetLine(int line);
+    int GetColumn() const;
+    void SetColumn(int column);
+    State GetState() const;
+    void SetState(State state);
+    const std::string &GetStr() const;
+    void SetStr(const std::string &str);
+    void CalcValue();
+    const std::string &GetValue() const;
+private:
+    int line, column;
+    State state;
+    std::string str;
+    std::string value;
+    void DoubleValue();
+    void StringValue();
+    void IntegerValue();
+    void IdentifierValue();
+    std::string IntToValue(int base);
+};
+
