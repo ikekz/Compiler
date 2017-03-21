@@ -14,6 +14,10 @@ Scanner::~Scanner() {
     fin.close();
 }
 
+void Scanner::Previous() {
+    UnGetChar((int)token.GetStr().size());
+}
+
 char Scanner::ReadChar() {
     char symb;
     fin.get(symb);
