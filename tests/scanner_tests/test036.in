@@ -1,2 +1,2 @@
-// Valid comment { No longer valid comment !!
-}
+// Valid comment (* No longer valid comment !!
+*)
