@@ -30,12 +30,17 @@ void Token::SetState(State state) {
     Token::state = state;
 }
 
-const std::string &Token::GetStr() const {
-    return str;
+const std::string &Token::GetText() const {
+    return text;
 }
 
-void Token::SetStr(const string &str) {
-    Token::str = str;
+void Token::SetText(const string &text) {
+    Token::text = text;
+}
+
+void Token::CalcType() {
+    if (tokenType.find(GetState()) != tokenType.end())
+        type = tokenType[GetState()];
 }
 
 void Token::CalcValue() {
@@ -52,6 +57,13 @@ void Token::CalcValue() {
     else if (tokenType[state] == TK_STRING) {
         StringValue();
     }
+    else if (tokenType[state] == TK_EOF) {
+        EofValue();
+    }
+}
+
+void Token::EofValue() {
+    value = "EOF";
 }
 
 const std::string &Token::GetValue() const {
@@ -59,15 +71,14 @@ const std::string &Token::GetValue() const {
 }
 
 void Token::DoubleValue() {
-    value = to_string(atof(str.c_str()));
+    value = to_string(atof(text.c_str()));
 }
 
 void Token::StringValue() {
-    value = str.substr(1, str.size() - 2);
+    value = text.substr(1, text.size() - 2);
 
-    if (value == "") {
+    if (value == "")
         return;
-    }
 
     regex rx1("\'((#[0-9]+)+)\'");
     smatch m1;
@@ -98,16 +109,24 @@ void Token::IntegerValue() {
 }
 
 void Token::IdentifierValue() {
-    value = str;
+    value = text;
 }
 
 string Token::IntToValue(int base) {
     char* tmp;
     const char* buf;
     if (base == 10)
-        buf = str.c_str();
+        buf = text.c_str();
     else
-        buf = str.substr(1, str.size() - 1).c_str();
+        buf = text.substr(1, text.size() - 1).c_str();
 
     return to_string(strtol(buf, &tmp, base));
+}
+
+void Token::SetType(TokenType type) {
+    Token::type = type;
+}
+
+TokenType Token::GetType() const {
+    return type;
 }

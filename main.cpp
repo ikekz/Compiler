@@ -1,5 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include "Scanner.h"
+#include "Parser.h"
+#include "Error.h"
 
 using namespace std;
 
@@ -12,8 +15,17 @@ int main(int argc, char* argv[]) {
                 scanner.PrintToken();
             }
         }
-        catch (string error) {
-            cout << error;
+        catch (Error error) {
+            cout << error.GetMessage();
+        }
+    }
+    else if (!strcmp(argv[1], "-p")) {
+        try {
+            Parser parser(argv[2]);
+            parser.PrintTree(parser.GetTree(), 0);
+        }
+        catch (Error error) {
+            cout << error.GetMessage();
         }
     }
 

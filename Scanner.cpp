@@ -1,6 +1,7 @@
 #include "Scanner.h"
 #include <iostream>
 #include <iomanip>
+#include "Error.h"
 
 using namespace std;
 
@@ -15,12 +16,15 @@ Scanner::~Scanner() {
 }
 
 void Scanner::PrevToken() {
-    UnGetChar((int)token.GetStr().size());
+    if (token.GetType() != TK_EOF)
+        UnGetChar((int)token.GetText().size());
 }
 
 char Scanner::ReadChar() {
     char symb;
     fin.get(symb);
+    if (fin.eof())
+        symb = '\0';
     if (symb == '\n') {
         line++;
         column = 0;
@@ -33,7 +37,10 @@ char Scanner::ReadChar() {
 
 void Scanner::UnGetChar(int count) {
     for (int i = 0; i < count; i++) {
-        fin.unget();
+        if (fin.eof())
+            fin.clear();
+        else
+            fin.unget();
         if (column == 0) {
             line--;
         } else {
@@ -48,30 +55,39 @@ void Scanner::InitStatesTable() {
     }
 }
 
-void Scanner::SetState(State state1, int transition, State state2) {
-    statesTable[state1][transition] = state2;
+void Scanner::SetState(State oldstate, int transition, State newstate) {
+    statesTable[oldstate][transition] = newstate;
 }
 
 void Scanner::CheckError(State state) {
+    std::string text;
     if (state == ERROR_INVALID_EXPRESSION)
-        throw "Invalid expression in Line " + to_string(token.GetLine()) + " in Column " +
-                to_string(token.GetColumn());
+        text = "Invalid expression";
     else if (state == ERROR_INVALID_STRING)
-        throw "Invalid string in Line " + to_string(token.GetLine()) + " in Column " +
-                to_string(token.GetColumn());
+        text = "Invalid string";
     else if (state == ERROR_INVALID_COMMENT)
-        throw "Invalid comment in Line " + to_string(token.GetLine()) + " in Column " +
-               to_string(token.GetColumn());
+        text = "Invalid comment";
 
+    if (!text.empty())
+        throw Error(text, token.GetLine(), token.GetColumn());
 }
 
 bool Scanner::IsComment(State state) {
     return state == RIGHT_BRACE || state == ASTERISK_RIGHT_PARENTHESIS || state == SLASH_SLASH;
 }
 
+void Scanner::CheckReservedWord() {
+    auto st = reservedWordState.find(token.GetText());
+    if (st != reservedWordState.end()) {
+        token.SetState(st->second);
+        token.SetType(TK_RESERVED_WORD);
+    }
+}
+
 void Scanner::NextToken() {
     ClearToken();
     bool isToken = false;
+
     while (!IsEndOfFile()) {
         char symb = ReadChar();
         State state = statesTable[token.GetState()][symb];
@@ -84,13 +100,8 @@ void Scanner::NextToken() {
 
         CheckError(state);
 
-        if (IsEndOfFile())
-            break;
-
         if (state == NOT_TOKEN) {
-            if (!isToken)
-                continue;
-            else {
+            if (isToken) {
                 UnGetChar();
                 State lastState = token.GetState();
                 if (IsComment(lastState)) {
@@ -100,27 +111,33 @@ void Scanner::NextToken() {
                 }
                 if (lastState == INTEGER_VALUE_PERIOD_PERIOD) {
                     UnGetChar(2);
-                    string str = token.GetStr();
-                    token.SetStr(str.substr(0, str.size() - 2));
+                    string text = token.GetText();
+                    token.SetText(text.substr(0, text.size() - 2));
                     token.SetState(INTEGER_VALUE);
                 }
                 break;
             }
+            else {
+                continue;
+            }
         }
         token.SetState(state);
-        token.SetStr(token.GetStr() + symb);
+        token.SetText(token.GetText() + symb);
     }
     token.CalcValue();
+    token.CalcType();
+    if (token.GetState() == IDENTIFIER)
+        CheckReservedWord();
 }
 
 void Scanner::PrintToken() {
-    if (token.GetState() == NOT_TOKEN)
+    if (token.GetType() == TK_EOF)
         return;
 
     cout << left << setw(4) <<  token.GetLine();
     cout << setw(4) << token.GetColumn();
-    cout << setw(15) << tokenName[tokenType[token.GetState()]];
-    cout << setw(15) << token.GetStr();
+    cout << setw(15) << tokenName[token.GetType()];
+    cout << setw(15) << token.GetText();
     cout << token.GetValue() << endl;
 }
 
@@ -131,7 +148,7 @@ bool Scanner::IsEndOfFile() {
 void Scanner::ClearToken() {
     token.SetColumn(column);
     token.SetLine(line);
-    token.SetStr("");
+    token.SetText("");
     token.SetState(NOT_TOKEN);
 }
 
@@ -181,7 +198,8 @@ void Scanner::FillStatesTable() {
             {'%', PERCENT},
             {'+', PLUS},
             {'-', MINUS},
-            {'}', ERROR_INVALID_COMMENT}
+            {'}', ERROR_INVALID_COMMENT},
+            {'\0', ST_EOF}
     });
 
     SetState(PERIOD, '.', PERIOD_PERIOD);
