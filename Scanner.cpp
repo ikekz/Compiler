@@ -165,185 +165,185 @@ void Scanner::SetStatesInRange(State state, std::vector<std::tuple<char, char, S
 
 void Scanner::FillStatesTable() {
     SetStatesInRange(NOT_TOKEN, {
-            {'a', 'z', IDENTIFIER},
-            {'A', 'Z', IDENTIFIER},
-            {'0', '9', INTEGER_VALUE},
+            { 'a', 'z', IDENTIFIER    },
+            { 'A', 'Z', IDENTIFIER    },
+            { '0', '9', INTEGER_VALUE },
     });
     SetStates(NOT_TOKEN, {
-            {'*', POINTER},
-            {',', COMMA},
-            {'.', PERIOD},
-            {'@', AT},
-            {'#', HASH},
-            {'<', LESS_THAN},
-            {'>', GREATER_THAN},
-            {':', COLON},
-            {';', SEMI_COLON},
-            {'=', EQUAL},
-            {'|', VERTICAL_LINE},
-            {'!', EXCLAMATION_POINT},
-            {'*', ASTERISK},
-            {'\'', QUOTE},
-            {'/', SLASH},
-            {'(', LEFT_PARENTHESIS},
-            {'{', LEFT_BRACE},
-            {'[', LEFT_BRACKET},
-            {')', RIGHT_PARENTHESIS},
-            {']', RIGHT_BRACKET},
-            {' ', NOT_TOKEN},
-            {'\n', NOT_TOKEN},
-            {'_', IDENTIFIER},
-            {'$', DOLLAR},
-            {'&', AMPERSAND},
-            {'%', PERCENT},
-            {'+', PLUS},
-            {'-', MINUS},
-            {'}', ERROR_INVALID_COMMENT},
-            {'\0', ST_EOF}
+            { '*',  POINTER               },
+            { ',',  COMMA                 },
+            { '.',  PERIOD                },
+            { '@',  AT                    },
+            { '#',  HASH                  },
+            { '<',  LESS_THAN             },
+            { '>',  GREATER_THAN          },
+            { ':',  COLON                 },
+            { ';',  SEMI_COLON            },
+            { '=',  EQUAL                 },
+            { '|',  VERTICAL_LINE         },
+            { '!',  EXCLAMATION_POINT     },
+            { '*',  ASTERISK              },
+            { '\'', QUOTE                 },
+            { '/',  SLASH                 },
+            { '(',  LEFT_PARENTHESIS      },
+            { '{',  LEFT_BRACE            },
+            { '[',  LEFT_BRACKET          },
+            { ')',  RIGHT_PARENTHESIS     },
+            { ']',  RIGHT_BRACKET         },
+            { ' ',  NOT_TOKEN             },
+            { '\n',  NOT_TOKEN            },
+            { '_',  IDENTIFIER            },
+            { '$',  DOLLAR                },
+            { '&',  AMPERSAND             },
+            { '%',  PERCENT               },
+            { '+',  PLUS                  },
+            { '-',  MINUS                 },
+            { '}',  ERROR_INVALID_COMMENT },
+            { '\0', ST_EOF                }
     });
 
     SetState(PERIOD, '.', PERIOD_PERIOD);
 
     SetStates(LESS_THAN, {
-            {'=', LESS_THAN_EQUAL},
-            {'>', LESS_THAN_GREATER_THAN},
-            {'<', LESS_THAN_LESS_THAN}
+            { '=', LESS_THAN_EQUAL        },
+            { '>', LESS_THAN_GREATER_THAN },
+            { '<', LESS_THAN_LESS_THAN    }
     });
 
     SetStates(GREATER_THAN, {
-            {'=', GREATER_THAN_EQUAL},
-            {'>', GREATER_THAN_LESS_THAN},
-            {'<', GREATER_THAN_GREATER_THAN}
+            { '=', GREATER_THAN_EQUAL        },
+            { '>', GREATER_THAN_LESS_THAN    },
+            { '<', GREATER_THAN_GREATER_THAN }
     });
 
     SetState(COLON, '=', COLON_EQUAL);
 
     SetStates(ASTERISK, {
-            {'=', ASTERISK_EQUAL},
-            {')', ERROR_INVALID_COMMENT}
+            { '=', ASTERISK_EQUAL        },
+            { ')', ERROR_INVALID_COMMENT }
     });
 
     SetStates(SLASH, {
-            {'/', SLASH_SLASH},
-            {'=', SLASH_EQUAL}
+            { '/', SLASH_SLASH },
+            { '=', SLASH_EQUAL }
     });
 
     SetStatesInRange(SLASH_SLASH, {
-            {0, 127, SLASH_SLASH}
+            { 0, 127, SLASH_SLASH }
     });
     SetState(SLASH_SLASH, '\n', NOT_TOKEN);
 
     SetStatesInRange(IDENTIFIER, {
-            {'a', 'z', IDENTIFIER},
-            {'A', 'Z', IDENTIFIER},
-            {'0', '9', IDENTIFIER}
+            { 'a', 'z', IDENTIFIER },
+            { 'A', 'Z', IDENTIFIER },
+            { '0', '9', IDENTIFIER }
     });
     SetState(IDENTIFIER, '_', IDENTIFIER);
 
     SetStatesInRange(INTEGER_VALUE, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', INTEGER_VALUE}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '9', INTEGER_VALUE            }
     });
     SetStates(INTEGER_VALUE, {
-            {'_', ERROR_INVALID_EXPRESSION},
-            {'.', DOUBLE_VALUE},
-            {'E', DOUBLE_VALUE_DIGIT_SCALE},
-            {'e', DOUBLE_VALUE_DIGIT_SCALE}
+            { '_', ERROR_INVALID_EXPRESSION },
+            { '.', DOUBLE_VALUE             },
+            { 'E', DOUBLE_VALUE_DIGIT_SCALE },
+            { 'e', DOUBLE_VALUE_DIGIT_SCALE }
     });
 
     SetStatesInRange(DOLLAR, {
-            {'a', 'f', HEX_INTEGER_VALUE},
-            {'g', 'a', ERROR_INVALID_EXPRESSION},
-            {'A', 'F', HEX_INTEGER_VALUE},
-            {'G', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', HEX_INTEGER_VALUE}
+            { 'a', 'f', HEX_INTEGER_VALUE        },
+            { 'g', 'a', ERROR_INVALID_EXPRESSION },
+            { 'A', 'F', HEX_INTEGER_VALUE        },
+            { 'G', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '9', HEX_INTEGER_VALUE        }
     });
 
     SetStatesInRange(AMPERSAND, {
-            {'a', 'z', IDENTIFIER},
-            {'A', 'Z', IDENTIFIER},
-            {'0', '7', OCTAL_INTEGER_VALUE},
-            {'8', '9', ERROR_INVALID_EXPRESSION}
+            { 'a', 'z', IDENTIFIER               },
+            { 'A', 'Z', IDENTIFIER               },
+            { '0', '7', OCTAL_INTEGER_VALUE      },
+            { '8', '9', ERROR_INVALID_EXPRESSION }
     });
     SetState(AMPERSAND, '_', IDENTIFIER);
 
     SetStatesInRange(PERCENT, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '1', BIN_INTEGER_VALUE},
-            {'2', '9', ERROR_INVALID_EXPRESSION}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '1', BIN_INTEGER_VALUE        },
+            { '2', '9', ERROR_INVALID_EXPRESSION }
     });
 
     SetStatesInRange(HEX_INTEGER_VALUE, {
-            {'a', 'f', HEX_INTEGER_VALUE},
-            {'g', 'a', ERROR_INVALID_EXPRESSION},
-            {'A', 'F', HEX_INTEGER_VALUE},
-            {'G', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', HEX_INTEGER_VALUE}
+            { 'a', 'f', HEX_INTEGER_VALUE        },
+            { 'g', 'a', ERROR_INVALID_EXPRESSION },
+            { 'A', 'F', HEX_INTEGER_VALUE        },
+            { 'G', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '9', HEX_INTEGER_VALUE        }
     });
     SetState(HEX_INTEGER_VALUE, '_', ERROR_INVALID_EXPRESSION);
 
     SetStatesInRange(OCTAL_INTEGER_VALUE, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '7', OCTAL_INTEGER_VALUE},
-            {'8', '9', ERROR_INVALID_EXPRESSION}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '7', OCTAL_INTEGER_VALUE      },
+            { '8', '9', ERROR_INVALID_EXPRESSION }
     });
     SetState(OCTAL_INTEGER_VALUE, '_', ERROR_INVALID_EXPRESSION);
 
     SetStatesInRange(BIN_INTEGER_VALUE, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '1', BIN_INTEGER_VALUE},
-            {'2', '9', ERROR_INVALID_EXPRESSION}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '1', BIN_INTEGER_VALUE        },
+            { '2', '9', ERROR_INVALID_EXPRESSION }
     });
     SetState(BIN_INTEGER_VALUE, '_', ERROR_INVALID_EXPRESSION);
 
     SetStatesInRange(DOUBLE_VALUE, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', DOUBLE_VALUE_DIGIT}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '9', DOUBLE_VALUE_DIGIT       }
     });
     SetStates(DOUBLE_VALUE, {
-            {'_', ERROR_INVALID_EXPRESSION},
-            {'.', INTEGER_VALUE_PERIOD_PERIOD}
+            { '_', ERROR_INVALID_EXPRESSION    },
+            { '.', INTEGER_VALUE_PERIOD_PERIOD }
     });
 
     SetStatesInRange(DOUBLE_VALUE_DIGIT, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', DOUBLE_VALUE_DIGIT}
+            { 'a', 'z', ERROR_INVALID_EXPRESSION },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION },
+            { '0', '9', DOUBLE_VALUE_DIGIT       }
     });
     SetStates(DOUBLE_VALUE_DIGIT, {
-            {'_', ERROR_INVALID_EXPRESSION},
-            {'.', ERROR_INVALID_EXPRESSION},
-            {'E', DOUBLE_VALUE_DIGIT_SCALE},
-            {'e', DOUBLE_VALUE_DIGIT_SCALE}
+            { '_', ERROR_INVALID_EXPRESSION },
+            { '.', ERROR_INVALID_EXPRESSION },
+            { 'E', DOUBLE_VALUE_DIGIT_SCALE },
+            { 'e', DOUBLE_VALUE_DIGIT_SCALE }
     });
 
     SetStatesInRange(DOUBLE_VALUE_DIGIT_SCALE, {
-            {0, 127, ERROR_INVALID_EXPRESSION},
-            {'0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT},
+            { 0, 127,   ERROR_INVALID_EXPRESSION            },
+            { '0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT },
     });
     SetStates(DOUBLE_VALUE_DIGIT_SCALE, {
-            {'+', DOUBLE_VALUE_DIGIT_SCALE_SIGN},
-            {'-', DOUBLE_VALUE_DIGIT_SCALE_SIGN}
+            { '+', DOUBLE_VALUE_DIGIT_SCALE_SIGN },
+            { '-', DOUBLE_VALUE_DIGIT_SCALE_SIGN }
     });
 
     SetStatesInRange(DOUBLE_VALUE_DIGIT_SCALE_SIGN, {
-            {0, 127, ERROR_INVALID_EXPRESSION},
-            {'0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT},
+            { 0, 127,   ERROR_INVALID_EXPRESSION             },
+            { '0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT },
     });
 
     SetStatesInRange(DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT, {
-            {'a', 'z', ERROR_INVALID_EXPRESSION},
-            {'A', 'Z', ERROR_INVALID_EXPRESSION},
-            {'0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT},
+            { 'a', 'z', ERROR_INVALID_EXPRESSION            },
+            { 'A', 'Z', ERROR_INVALID_EXPRESSION            },
+            { '0', '9', DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT },
     });
     SetStates(DOUBLE_VALUE_DIGIT_SCALE_SIGN_DIGIT, {
-            {'.', ERROR_INVALID_EXPRESSION},
-            {'_', ERROR_INVALID_EXPRESSION}
+            { '.', ERROR_INVALID_EXPRESSION },
+            { '_', ERROR_INVALID_EXPRESSION }
     });
 
     SetState(MINUS, '=', MINUS_EQUAL);
@@ -351,58 +351,58 @@ void Scanner::FillStatesTable() {
     SetState(PLUS, '=', PLUS_EQUAL);
 
     SetStatesInRange(LEFT_BRACE, {
-            {0, 127, LEFT_BRACE}
+            { 0, 127, LEFT_BRACE }
     });
     SetStates(LEFT_BRACE, {
-            {'}', RIGHT_BRACE},
-            {'\0', ERROR_INVALID_COMMENT}
+            { '}',  RIGHT_BRACE           },
+            { '\0', ERROR_INVALID_COMMENT }
     });
 
     SetState(LEFT_PARENTHESIS, '*', LEFT_PARENTHESIS_ASTERISK);
 
     SetStatesInRange(LEFT_PARENTHESIS_ASTERISK, {
-            {0, 127, LEFT_PARENTHESIS_ASTERISK}
+            { 0, 127, LEFT_PARENTHESIS_ASTERISK }
     });
     SetStates(LEFT_PARENTHESIS_ASTERISK, {
-            {'*', LEFT_PARENTHESIS_ASTERISK_ASTERISK},
-            {'\0', ERROR_INVALID_COMMENT}
+            { '*',  LEFT_PARENTHESIS_ASTERISK_ASTERISK },
+            { '\0', ERROR_INVALID_COMMENT              }
     });
 
     SetStatesInRange(LEFT_PARENTHESIS_ASTERISK_ASTERISK, {
-            {0, 127, LEFT_PARENTHESIS_ASTERISK}
+            { 0, 127, LEFT_PARENTHESIS_ASTERISK }
     });
     SetStates(LEFT_PARENTHESIS_ASTERISK_ASTERISK, {
-            {'*', LEFT_PARENTHESIS_ASTERISK_ASTERISK},
-            {')', ASTERISK_RIGHT_PARENTHESIS},
-            {'\0', ERROR_INVALID_COMMENT}
+            { '*',  LEFT_PARENTHESIS_ASTERISK_ASTERISK },
+            { ')',  ASTERISK_RIGHT_PARENTHESIS         },
+            { '\0', ERROR_INVALID_COMMENT              }
     });
 
     SetStatesInRange(QUOTE, {
-            {0, 127, QUOTE}
+            { 0, 127, QUOTE}
     });
     SetStates(QUOTE, {
-            {'\'', STRING},
-            {'\0', ERROR_INVALID_STRING},
-            {'\n', ERROR_INVALID_STRING}
+            { '\'', STRING               },
+            { '\0', ERROR_INVALID_STRING },
+            { '\n', ERROR_INVALID_STRING }
     });
 
     SetStates(STRING, {
-            {'#', STRING_HASH},
-            {'\'', QUOTE}
+            { '#',  STRING_HASH },
+            { '\'', QUOTE       }
     });
 
     SetStatesInRange(STRING_HASH, {
-            {0, 127, ERROR_INVALID_EXPRESSION},
-            {'0', '9', STRING_HASH_INTEGER_VALUE}
+            { 0, 127,   ERROR_INVALID_EXPRESSION  },
+            { '0', '9', STRING_HASH_INTEGER_VALUE }
     });
 
     SetStatesInRange(STRING_HASH_INTEGER_VALUE, {
-            {0, 127, ERROR_INVALID_EXPRESSION},
-            {'0', '9', STRING_HASH_INTEGER_VALUE}
+            { 0, 127,   ERROR_INVALID_EXPRESSION  },
+            { '0', '9', STRING_HASH_INTEGER_VALUE }
     });
     SetStates(STRING_HASH_INTEGER_VALUE, {
-            {'#', STRING_HASH},
-            {'\'', QUOTE}
+            { '#',  STRING_HASH },
+            { '\'', QUOTE       }
     });
 }
 
