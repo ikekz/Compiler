@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "Scanner.h"
 #include "Parser.h"
 #include "Error.h"
@@ -19,10 +20,28 @@ int main(int argc, char* argv[]) {
             cout << error.GetMessage();
         }
     }
-    else if (!strcmp(argv[1], "-p")) {
+    else if (!strcmp(argv[1], "-pe")) {
         try {
-            Parser parser(argv[2]);
-            parser.PrintTree(parser.GetTree(), 0);
+            Parser parser(argv[2], ParserConfig::ParseExpression);
+            parser.PrintTree();
+        }
+        catch (Error error) {
+            cout << error.GetMessage();
+        }
+    }
+    else if (!strcmp(argv[1], "-pd")) {
+        try {
+            Parser parser(argv[2], ParserConfig::ParseProgram);
+            parser.PrintStack();
+        }
+        catch (Error error) {
+            cout << error.GetMessage();
+        }
+    }
+    else if (!strcmp(argv[1], "-ps")) {
+        try {
+            Parser parser(argv[2], ParserConfig::ParseProgram);
+            parser.PrintTree();
         }
         catch (Error error) {
             cout << error.GetMessage();
