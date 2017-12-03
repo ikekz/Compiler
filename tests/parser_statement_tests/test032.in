@@ -1,0 +1,8 @@
+procedure p();
+var
+	a: integer = 0;
+begin
+	a := a;
+end;
+begin
+end.

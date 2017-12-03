@@ -1,0 +1,5 @@
+var
+	a, b : double;
+begin
+	a + b := 5;
+end.

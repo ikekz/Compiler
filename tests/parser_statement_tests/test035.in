@@ -1,0 +1,10 @@
+type
+	t = array [0..9] of double;
+procedure p(a: array of t);
+begin
+end;
+var
+	b: array [0..0] of array [0..9] of double;
+begin
+	p(b);
+end.

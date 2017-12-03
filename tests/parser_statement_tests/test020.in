@@ -1,0 +1,12 @@
+var
+	a : record
+			x : record
+				y : double;
+				end;
+		end;
+	b: record
+			z : double;
+		end;
+begin
+		a.x.y := b.z;
+end.

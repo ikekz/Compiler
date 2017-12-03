@@ -1,0 +1,6 @@
+procedure p(p: integer; e: integer);
+begin
+end;
+begin
+	p(5, 5.0);
+end.

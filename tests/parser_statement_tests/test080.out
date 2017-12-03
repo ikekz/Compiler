@@ -1,0 +1,1 @@
+(10,4) Error: Incompatible types for arg 1: got "array [1..20] of integer" expected "array [1..10] of integer"

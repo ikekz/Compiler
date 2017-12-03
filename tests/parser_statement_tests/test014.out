@@ -1,0 +1,1 @@
+(9,7) Error: Incompatible types: got "record <x: array of array [1..9] of integer> <z: array of array [1..9] of integer> " expected "record <x: array of array [1..9] of integer> <y: array of array [1..9] of integer> "

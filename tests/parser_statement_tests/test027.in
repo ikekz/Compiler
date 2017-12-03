@@ -1,0 +1,6 @@
+procedure p;
+begin
+end;
+begin
+	p(5);
+end.

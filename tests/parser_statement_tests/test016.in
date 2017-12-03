@@ -1,0 +1,5 @@
+var
+	a : array of integer;
+begin
+	a[8] := 5;
+end.

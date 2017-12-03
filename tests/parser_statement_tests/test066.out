@@ -1,0 +1,10 @@
+begin
+    for
+    to
+        :=
+            i
+            2
+        2
+        begin
+        end
+end

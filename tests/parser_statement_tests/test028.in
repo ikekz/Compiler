@@ -1,0 +1,6 @@
+procedure p(p: integer);
+begin
+end;
+begin
+	p();
+end.

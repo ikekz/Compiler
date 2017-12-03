@@ -1,0 +1,8 @@
+function f(a: array of integer) : integer;
+begin
+end;
+var
+	b: array of integer;
+begin
+	f(b);
+end.

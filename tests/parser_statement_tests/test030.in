@@ -1,0 +1,6 @@
+procedure p(a: integer);
+begin
+	a := a;
+end;
+begin
+end.

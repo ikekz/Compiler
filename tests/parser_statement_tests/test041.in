@@ -1,0 +1,6 @@
+function f (a: integer; b: double): integer;
+begin
+end;
+begin
+	f(5.0, 5);
+end.

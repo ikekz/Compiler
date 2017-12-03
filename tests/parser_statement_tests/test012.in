@@ -1,0 +1,7 @@
+var
+	a, b : record
+		x, y : array of array [1..9] of integer;
+		end;
+begin
+	a := b;
+end.

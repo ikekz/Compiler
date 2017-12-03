@@ -1,0 +1,7 @@
+var
+	a : record
+		x : integer;
+		end;
+begin
+	a.x := 5;
+end.

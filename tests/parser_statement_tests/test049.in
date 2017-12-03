@@ -1,0 +1,10 @@
+type
+	t = array [0..9] of double;
+function f(a: array of t) : integer;
+begin
+end;
+var
+	b: array [0..0] of array [0..9] of double;
+begin
+	f(b);
+end.

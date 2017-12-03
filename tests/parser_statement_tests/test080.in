@@ -1,0 +1,11 @@
+type
+	t1 = array [1..10] of integer;
+	t2 = array [1..20] of integer;
+procedure p(a : t1);
+begin
+end;
+var
+	b: t2;
+begin
+	p(b);
+end.

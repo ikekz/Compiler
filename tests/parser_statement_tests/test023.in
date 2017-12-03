@@ -1,0 +1,6 @@
+var
+	a : array of integer;
+begin
+	a := a;
+	a += a;
+end.

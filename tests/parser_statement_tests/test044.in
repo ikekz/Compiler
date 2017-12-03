@@ -1,0 +1,6 @@
+function f(a: integer): integer;
+begin
+	a := a;
+end;
+begin
+end.

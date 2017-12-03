@@ -1,0 +1,8 @@
+procedure p(a: array of integer);
+begin
+end;
+var
+	b: array of integer;
+begin
+	p(b);
+end.
