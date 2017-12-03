@@ -1,14 +1,15 @@
 #!/bin/bash 
 
-make -C /Users/ilyazuev/prog/Compiler/stuff/
+stuff="$PWD/../../stuff"
+make -C $stuff
 
-for file in /Users/ilyazuev/prog/Compiler/tests/scanner_tests/*.in
+echo "Scanner tests:"
+for file in ${PWD}/*.in
 do
 	file=${file##*/}
 	file=${file%.*}
 	echo -n "$file "
-
-	test=$(/Users/ilyazuev/prog/Compiler/stuff/Compiler -s /Users/ilyazuev/prog/Compiler/tests/scanner_tests/$file.in | diff - /Users/ilyazuev/prog/Compiler/tests/scanner_tests/$file.out)
+	test=$($stuff/Compiler -s $PWD/$file.in | diff - $PWD/$file.out)
 	if [ "$test" != "" ] 
 	then	
 		echo "FAIL"
