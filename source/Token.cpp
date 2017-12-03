@@ -44,22 +44,17 @@ void Token::CalcType() {
 }
 
 void Token::CalcValue() {
-    if (tokenType[state] == TK_DOUBLE) {
+    if (tokenType[state] == TK::Double)
         DoubleValue();
-    }
-    else if (tokenType[state] == TK_IDENTIFIER || tokenType[state] == TK_OPERATOR ||
-            tokenType[state] == TK_SEPARATOR) {
+    else if (tokenType[state] == TK::Identifier || tokenType[state] == TK::Operator ||
+            tokenType[state] == TK::Separator)
         IdentifierValue();
-    }
-    else if (tokenType[state] == TK_INTEGER) {
+    else if (tokenType[state] == TK::Integer)
         IntegerValue();
-    }
-    else if (tokenType[state] == TK_STRING) {
+    else if (tokenType[state] == TK::String)
         StringValue();
-    }
-    else if (tokenType[state] == TK_EOF) {
+    else if (tokenType[state] == TK::EOFF)
         EofValue();
-    }
 }
 
 void Token::EofValue() {
@@ -86,9 +81,8 @@ void Token::StringValue() {
         regex rx2("#([0-9]+)");
         smatch m2;
         string tmp = m1[1].str();
-        while (regex_search(tmp, m2, rx2)) {
+        while (regex_search(tmp, m2, rx2))
             tmp = m2.prefix().str() + (char)atoi(m2[1].str().c_str()) + m2.suffix().str();
-        }
         value = m1.prefix().str() + tmp + m1.suffix().str();
     }
 
@@ -98,13 +92,13 @@ void Token::StringValue() {
 
 void Token::IntegerValue() {
     char* tmp;
-    if (state == HEX_INTEGER_VALUE)
+    if (state == HexIntegerValue)
         value = IntToValue(16);
-    else if (state == INTEGER_VALUE)
+    else if (state == State::IntegerValue)
         value = IntToValue(10);
-    else if (state == OCTAL_INTEGER_VALUE)
+    else if (state == OctalIntegerValue)
         value = IntToValue(8);
-    else if (state == BIN_INTEGER_VALUE)
+    else if (state == BinIntegerValue)
         value = IntToValue(2);
 }
 
@@ -123,10 +117,10 @@ string Token::IntToValue(int base) {
     return to_string(strtol(buf, &tmp, base));
 }
 
-void Token::SetType(TokenType type) {
+void Token::SetType(TK::TokenType type) {
     Token::type = type;
 }
 
-TokenType Token::GetType() const {
+TK::TokenType Token::GetType() const {
     return type;
 }
