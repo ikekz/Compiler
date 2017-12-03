@@ -1,0 +1,4 @@
+integer        type           integer
+double         type           double
+char           type           char
+c              const          integer        14

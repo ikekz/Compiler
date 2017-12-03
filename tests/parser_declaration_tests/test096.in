@@ -1,0 +1,4 @@
+var
+	v1 : double = 1;
+begin
+end.

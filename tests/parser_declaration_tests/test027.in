@@ -1,0 +1,11 @@
+const
+	c1 : double = not 2;
+	c2 : double = 1 and 2;
+	c3 : double = 1 or 2;
+	c4 : double = 1 xor 2;
+	c5 : double = 1 shl 2;
+	c6 : double = 1 shr 2;
+	c7 : double = 1 << 2;
+	c8 : double = 1 >> 2;
+begin
+end.

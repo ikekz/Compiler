@@ -1,0 +1,16 @@
+integer        type           integer
+double         type           double
+char           type           char
+f              function       return type: 
+                              integer
+                              args:
+                              a              valueparam     integer
+                              locals:
+                              c              const          integer        2
+                              t              type           record:
+                                                            f              recordfield    double
+                                                            end
+                              v1             var            integer        2
+                              v2             var            record:
+                                                            f              recordfield    double
+                                                            end

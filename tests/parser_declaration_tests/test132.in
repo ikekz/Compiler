@@ -1,0 +1,5 @@
+function f(a : integer) : array of array [1..2] of double;
+begin
+end;
+begin
+end.

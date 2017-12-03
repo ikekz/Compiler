@@ -1,0 +1,10 @@
+integer        type           integer
+double         type           double
+char           type           char
+t              type           array of array [1..2] of double
+f              function       return type: 
+                              integer
+                              args:
+                              a              valueparam     {open} array of array of array [1..2] of double
+                              locals:
+                              none

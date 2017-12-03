@@ -1,0 +1,8 @@
+type
+	t1 = array of integer;
+	t2 = record
+			t1: integer;
+			t2: t1;
+		end;
+begin
+end.

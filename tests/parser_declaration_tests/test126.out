@@ -1,0 +1,9 @@
+integer        type           integer
+double         type           double
+char           type           char
+f              function       return type: 
+                              integer
+                              args:
+                              none
+                              locals:
+                              none

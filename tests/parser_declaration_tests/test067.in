@@ -1,0 +1,4 @@
+type
+	t = array of array of double;
+begin
+end.

@@ -1,0 +1,11 @@
+integer        type           integer
+double         type           double
+char           type           char
+f              function       return type: 
+                              integer
+                              args:
+                              a              valueparam     integer
+                              locals:
+                              v              var            integer        0
+a              var            integer        0
+v              var            integer        0

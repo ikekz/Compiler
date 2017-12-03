@@ -1,0 +1,7 @@
+function f(a : integer) : record
+	x: integer;
+	end;
+begin
+end;
+begin
+end.

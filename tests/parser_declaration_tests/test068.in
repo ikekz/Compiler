@@ -1,0 +1,5 @@
+type
+	t1 = array [1..2] of integer;
+	t2 = array of t1;
+begin
+end.

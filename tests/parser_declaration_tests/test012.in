@@ -1,0 +1,5 @@
+const
+	c1 = 7 - 1;
+	c2 = c1 + c1 * 2;
+begin
+end.

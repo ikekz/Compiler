@@ -1,0 +1,5 @@
+integer        type           integer
+double         type           double
+char           type           char
+v1             var            integer        0
+v2             var            double         0.000000

@@ -1,0 +1,4 @@
+type
+	t = 5..2.2;
+begin
+end.

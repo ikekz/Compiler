@@ -1,0 +1,5 @@
+type
+	t = record
+		end
+begin
+end.

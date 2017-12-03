@@ -1,0 +1,7 @@
+integer        type           integer
+double         type           double
+char           type           char
+t1             type           array of integer
+t2             type           record:
+                              t1             recordfield    array of integer
+                              end

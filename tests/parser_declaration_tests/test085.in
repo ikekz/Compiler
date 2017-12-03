@@ -1,0 +1,6 @@
+type
+	t1 = array of double;
+	t2 = t1;
+	t3 = t2;
+begin
+end.

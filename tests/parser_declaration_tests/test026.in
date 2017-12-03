@@ -1,0 +1,9 @@
+const
+	c1 : double = 1 + 2;
+	c2 : double = 1 - 2;
+	c3 : double = 1 * 2;
+	c4 : double = 1 / 2;
+	c5 : double = 1 mod 2;
+	c6 : double = 1 div 2;
+begin
+end.

@@ -1,0 +1,7 @@
+const
+	c1 : double = 1.0 + 2;
+	c2 : double = 1.0 - 2;
+	c3 : double = 1.0 * 2;
+	c4 : double = 1.0 / 2;
+begin
+end.

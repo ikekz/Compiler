@@ -1,0 +1,4 @@
+integer        type           integer
+double         type           double
+char           type           char
+c              const          double         14.500000

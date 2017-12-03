@@ -1,0 +1,4 @@
+type
+	t = 0..0;
+begin
+end.

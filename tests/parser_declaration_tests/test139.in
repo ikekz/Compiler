@@ -1,0 +1,14 @@
+function f(a: integer) : integer;
+const
+	c = 2;
+type
+	t = record
+		f : double;
+		end;
+var
+	v1: integer = c;
+	v2: t;
+begin
+end;
+begin
+end.

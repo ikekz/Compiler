@@ -1,0 +1,4 @@
+integer        type           integer
+double         type           double
+char           type           char
+v1             var            integer        1

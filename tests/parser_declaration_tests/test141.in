@@ -1,0 +1,5 @@
+function f(a: array of array of integer) : integer;
+begin
+end;
+begin
+end.

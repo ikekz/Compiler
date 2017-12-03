@@ -1,0 +1,26 @@
+const
+	c1 = 5;
+var
+	v1 : integer = c1;
+type
+	t1 = integer;
+procedure p1;
+begin
+end;
+function f1 : integer;
+begin
+end;
+function f2 : double;
+begin
+end;
+procedure p2;
+begin
+end;
+type
+	t2 = double;
+var
+	v2 : t2 = -3;
+const
+	c2 = -17.8;
+begin
+end.

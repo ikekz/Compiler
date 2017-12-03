@@ -1,0 +1,5 @@
+integer        type           integer
+double         type           double
+char           type           char
+c1             const          integer        6
+c2             const          integer        18

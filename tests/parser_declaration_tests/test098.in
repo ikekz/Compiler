@@ -1,0 +1,5 @@
+var
+	v1 : integer;
+	v2 : double;
+begin
+end.

@@ -1,0 +1,5 @@
+type
+	t1 = double;
+	t2 = array [1..10, t1] of t1;
+begin
+end.

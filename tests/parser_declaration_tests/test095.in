@@ -1,0 +1,4 @@
+var
+	v1 : integer = 1.0;
+begin
+end.

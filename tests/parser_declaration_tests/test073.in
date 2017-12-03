@@ -1,0 +1,6 @@
+type
+	t = record
+			x:
+		end;
+begin
+end.

@@ -1,0 +1,7 @@
+type
+	t = array of array [1..2] of double;
+function f(a: array of t) : integer;
+begin
+end;
+begin
+end.

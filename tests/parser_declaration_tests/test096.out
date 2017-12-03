@@ -1,0 +1,4 @@
+integer        type           integer
+double         type           double
+char           type           char
+v1             var            double         1.000000

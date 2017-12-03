@@ -1,0 +1,7 @@
+integer        type           integer
+double         type           double
+char           type           char
+p              procedure      args:
+                              a              valueparam     integer
+                              locals:
+                              none

@@ -1,0 +1,5 @@
+type
+	t1 = 1..10;
+	t2 = array [1..10, t1, t1] of t1;
+begin
+end.

@@ -1,0 +1,9 @@
+type
+	a = record
+		x: double;
+		end;
+function f(a: integer) : a;
+begin
+end;
+begin
+end.

@@ -1,0 +1,10 @@
+const
+	c1 : integer = - 3;
+	c2 : integer = + 4;
+	c3 : integer = not 5;
+	c4 : double = - 6;
+	c5 : double = + 7;
+	c6 : double = - 8.2;
+	c7 : double = + 9.3;
+begin
+end.

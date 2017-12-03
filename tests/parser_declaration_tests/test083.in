@@ -1,0 +1,10 @@
+type
+	t1 = record
+		x: double;
+		y: array of integer;
+		end;
+	t2 = record
+			x, y: t1;
+		end;
+begin
+end.

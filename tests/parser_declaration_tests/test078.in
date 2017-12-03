@@ -1,0 +1,6 @@
+type
+	t = record
+			t, t: integer;
+		end;
+begin
+end.

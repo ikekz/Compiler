@@ -1,0 +1,9 @@
+integer        type           integer
+double         type           double
+char           type           char
+c1             const          integer        0
+c2             const          integer        1
+c3             const          integer        1
+c4             const          double         0.000000
+c5             const          double         1.000000
+c6             const          double         0.000000

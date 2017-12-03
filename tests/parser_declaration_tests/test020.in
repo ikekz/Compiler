@@ -1,0 +1,5 @@
+const
+	c1 = 5;
+	c2 : double = c1;
+begin
+end.

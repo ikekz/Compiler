@@ -1,0 +1,4 @@
+const
+	c : double = 5;
+begin
+end.

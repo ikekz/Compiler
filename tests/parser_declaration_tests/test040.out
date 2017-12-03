@@ -1,0 +1,4 @@
+integer        type           integer
+double         type           double
+char           type           char
+t              type           double

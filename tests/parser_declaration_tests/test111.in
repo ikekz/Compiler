@@ -1,0 +1,5 @@
+procedure p(a: integer; p: double);
+begin
+end;
+begin
+end.

@@ -1,0 +1,29 @@
+integer        type           integer
+double         type           double
+char           type           char
+c1             const          integer        5
+v1             var            integer        5
+t1             type           integer
+p1             procedure      args:
+                              none
+                              locals:
+                              none
+f1             function       return type: 
+                              integer
+                              args:
+                              none
+                              locals:
+                              none
+f2             function       return type: 
+                              double
+                              args:
+                              none
+                              locals:
+                              none
+p2             procedure      args:
+                              none
+                              locals:
+                              none
+t2             type           double
+v2             var            double         -3.000000
+c2             const          double         -17.800000

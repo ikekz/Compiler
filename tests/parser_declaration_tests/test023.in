@@ -1,0 +1,5 @@
+const
+	c1 : double = 5;
+	c2 : integer = c1 + 6;
+begin
+end.

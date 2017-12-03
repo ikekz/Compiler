@@ -1,0 +1,17 @@
+integer        type           integer
+double         type           double
+char           type           char
+t1             type           record:
+                              x              recordfield    double
+                              y              recordfield    array of integer
+                              end
+t2             type           record:
+                              x              recordfield    record:
+                                                            x              recordfield    double
+                                                            y              recordfield    array of integer
+                                                            end
+                              y              recordfield    record:
+                                                            x              recordfield    double
+                                                            y              recordfield    array of integer
+                                                            end
+                              end

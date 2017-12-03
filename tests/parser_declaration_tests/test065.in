@@ -1,0 +1,4 @@
+type
+	t = array of integer;
+begin
+end.

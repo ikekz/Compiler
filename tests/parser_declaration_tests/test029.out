@@ -1,0 +1,10 @@
+integer        type           integer
+double         type           double
+char           type           char
+c1             const          integer        -3
+c2             const          integer        4
+c3             const          integer        -6
+c4             const          double         -6.000000
+c5             const          double         7.000000
+c6             const          double         -8.200000
+c7             const          double         9.300000

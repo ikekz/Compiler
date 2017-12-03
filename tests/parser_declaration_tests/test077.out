@@ -1,0 +1,7 @@
+integer        type           integer
+double         type           double
+char           type           char
+t              type           record:
+                              t              recordfield    integer
+                              x              recordfield    integer
+                              end

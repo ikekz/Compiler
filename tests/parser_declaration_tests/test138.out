@@ -1,0 +1,14 @@
+integer        type           integer
+double         type           double
+char           type           char
+a              type           record:
+                              x              recordfield    double
+                              end
+f              function       return type: 
+                              record:
+                              x              recordfield    double
+                              end
+                              args:
+                              a              valueparam     integer
+                              locals:
+                              none

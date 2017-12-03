@@ -1,0 +1,9 @@
+const
+	c1 : integer = 1.0 > 2;
+	c2 : integer = 1 < 2.0;
+	c3 : integer = 1 = 1.0;
+	c4 : double = 1.0 <> 1;
+	c5 : double = 1 <= 2;
+	c6 : double = 1 >= 2;
+begin
+end.

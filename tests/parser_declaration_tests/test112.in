@@ -1,0 +1,7 @@
+procedure p(a: integer);
+var
+	p: integer;
+begin
+end;
+begin
+end.

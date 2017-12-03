@@ -1,0 +1,4 @@
+const
+	c : double = 1.0 div 2;
+begin
+end.
